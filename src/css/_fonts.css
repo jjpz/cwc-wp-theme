@@ -1,0 +1,29 @@
+/* fonts */
+
+@font-face {
+	font-family: 'Neuton';
+	font-display: auto;
+	src: url('fonts/Neuton-Regular.eot');
+	src: url('fonts/Neuton-Regular.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Neuton-Regular.woff2') format('woff2'),
+		url('fonts/Neuton-Regular.woff') format('woff'),
+		url('fonts/Neuton-Regular.ttf') format('truetype'),
+		url('fonts/Neuton-Regular.svg#Neuton-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Alata';
+	font-display: auto;
+	src: url('fonts/Alata-Regular.eot');
+	src: url('fonts/Alata-Regular.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Alata-Regular.woff2') format('woff2'),
+		url('fonts/Alata-Regular.woff') format('woff'),
+		url('fonts/Alata-Regular.ttf') format('truetype'),
+		url('fonts/Alata-Regular.svg#Alata-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}

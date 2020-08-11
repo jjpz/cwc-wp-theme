@@ -1,0 +1,12 @@
+{
+    "name": "jjpz/cwc",
+    "authors": [
+        {
+            "name": "Juanjo Perez",
+            "email": "jjperez85@gmail.com"
+        }
+    ],
+    "require": {
+        "htmlburger/carbon-fields": "^3.1"
+    }
+}

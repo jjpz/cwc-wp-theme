@@ -1,0 +1,424 @@
+/* header */
+
+.site-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 80px;
+	background: #f2f8fd;
+	z-index: 1;
+}
+
+.site-header-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 2560px;
+	margin: 0 auto;
+	padding: 0 30px;
+}
+
+.site-header ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-header.nav-header,
+.site-header.home-intro-header {
+	position: relative;
+}
+
+body.home > .site-header.home-header {
+	display: none;
+	position: fixed;
+	transform: translateY(-150%);
+	transition: transform 0.25s;
+}
+
+body.home > .site-header.home-header.sticky {
+	transform: translateY(0);
+	transition: transform 0.25s;
+}
+
+.site-header.home-intro-header {
+	background: #fff;
+}
+
+.site-header-left {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.site-branding {
+	display: inline-flex;
+	align-items: center;
+	padding-right: 60px;
+}
+
+.site-logo {
+	display: inline-flex;
+	width: 50px;
+	height: 50px;
+	margin-right: 15px;
+}
+
+h1.site-title {
+	display: inline-flex;
+	margin-bottom: 0;
+	line-height: 1;
+	font-family: 'Alata';
+	font-size: 20px;
+	font-weight: 100;
+	color: #80bee8;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+/* nav toggle */
+
+.nav-toggle {
+	display: inline-flex;
+}
+
+.nav-toggle-link {
+	display: inline-flex;
+	align-items: center;
+	opacity: 0.66;
+}
+
+.home-intro-header .nav-toggle-link {
+	opacity: 0.33;
+}
+
+.nav-toggle-link:hover {
+	opacity: 1;
+	transition: all 0.25s;
+}
+
+.nav-toggle-text {
+	margin-right: 15px;
+	font-family: 'Alata';
+	font-size: 14px;
+	color: #666;
+	text-transform: uppercase;
+}
+
+.nav-toggle-open > .nav-toggle-text {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.nav-toggle-btn {
+	position: relative;
+	display: inline-flex;
+	width: 32px;
+	height: 18px;
+}
+
+.nav-toggle-btn > span.nav-toggle-btn-bar {
+	display: block;
+	position: absolute;
+	height: 2px;
+	width: 100%;
+	background: #666;
+	border-radius: 2px;
+	left: 0;
+}
+
+.nav-toggle-open > .nav-toggle-btn > span:nth-child(1) {
+	top: 0;
+}
+
+.nav-toggle-open > .nav-toggle-btn > span:nth-child(2) {
+	top: 8px;
+}
+
+.nav-toggle-open > .nav-toggle-btn > span:nth-child(3) {
+	top: 16px;
+}
+
+.nav-toggle-close > span.nav-toggle-text {
+	display: inline-flex;
+}
+
+.nav-toggle-close > .nav-toggle-btn > span.nav-toggle-btn-bar:nth-child(1) {
+	top: 9px;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.nav-toggle-close > .nav-toggle-btn > span.nav-toggle-btn-bar:nth-child(2) {
+	top: 9px;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+@media (max-width: 575px) {
+	.nav-toggle-text {
+		display: none;
+	}
+
+	.nav-toggle-close > span.nav-toggle-text {
+		display: none;
+	}
+}
+
+/* nav */
+
+nav {
+	display: none;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background: #f2f8fd;
+	opacity: 0;
+	visibility: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	z-index: 10;
+}
+
+nav.open {
+	/*display: block;*/
+	opacity: 1;
+	visibility: visible;
+	transition: all 0.25s;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.nav-appointment {
+	position: relative;
+	min-width: 250px;
+	text-align: center;
+}
+
+.nav-hours {
+	position: absolute;
+	width: 100%;
+	margin-top: 10px;
+	font-family: 'Neuton';
+	font-size: 15px;
+}
+
+.nav-container {
+	display: flex;
+	flex: 1 0 100%;
+	flex-wrap: wrap;
+	max-width: 2560px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.nav-col {
+	margin-top: 60px;
+}
+
+.nav-col-main {
+	margin-top: 75px;
+	margin-bottom: 30px;
+}
+
+.nav-col-left a,
+.nav-col-right a {
+	display: flex;
+	align-items: flex-end;
+	height: 60px;
+}
+
+.nav-col-right a {
+	justify-content: flex-end;
+	text-align: right;
+}
+
+ul.menu {
+	display: flex;
+	flex: 1 0 100%;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+li.menu-item {
+	flex: 0 0 auto;
+}
+
+li.menu-item.title {
+	margin-bottom: 5px;
+}
+
+li.menu-item.title > a {
+	font-family: 'Neuton';
+	font-size: 15px;
+	text-transform: none;
+}
+
+li.menu-item.view-all,
+li.menu-item.learn-more {
+	margin-top: 15px;
+}
+
+li.menu-item.button > a {
+	padding: 5px 10px;
+	border-radius: 3px;
+	background: #80bee8;
+	color: #fff;
+}
+
+ul.menu > li.menu-item {
+	width: 50%;
+	padding: 0 15px;
+	margin-bottom: 45px;
+}
+
+ul.menu > li.menu-item > a {
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 15px;
+	line-height: 1;
+	font-family: 'Alata';
+	font-size: 60px;
+	color: #80bee8;
+}
+
+ul.menu > li.menu-item > a > span {
+	display: inline-flex;
+	width: 29px;
+	height: 17px;
+	margin-top: 21.5px;
+	margin-right: 15px;
+	margin-bottom: -10px;
+}
+
+ul.menu > li.menu-item > a > span > svg {
+	width: 29px;
+	height: 17px;
+}
+
+p.menu-item-description {
+	margin-left: 45px;
+}
+
+ul.sub-menu {
+	margin-top: 15px;
+	margin-left: 45px;
+}
+
+ul.sub-menu > li > a {
+	font-family: 'Alata';
+	font-size: 14px;
+	color: #666;
+	text-transform: uppercase;
+}
+
+@media (max-width: 991px) {
+	.nav-col-left,
+	.nav-col-right {
+		margin-top: 15px;
+	}
+
+	.nav-col-main {
+		margin-top: 30px;
+	}
+}
+
+@media (max-width: 767px) {
+	.nav {
+		overflow-y: scroll;
+	}
+
+	.nav-container {
+		padding: 0;
+	}
+
+	ul.menu > li.menu-item {
+		margin-bottom: 30px;
+	}
+
+	ul.menu > li.menu-item > a {
+		font-size: 50px;
+	}
+}
+
+@media (max-width: 575px) {
+	ul.menu > li.menu-item {
+		width: 100%;
+	}
+}
+
+/* lang & portal */
+
+.site-lang {
+	display: flex;
+}
+
+.site-lang li {
+	position: relative;
+	margin-right: 10px;
+}
+
+.home-intro-header .site-lang li {
+	opacity: 0.33;
+}
+
+.site-lang li:hover {
+	opacity: 1;
+	transition: all 0.25s;
+}
+
+.site-lang li:hover span.lang-link-bar {
+	opacity: 1;
+	transition: all 0.25s;
+}
+
+.site-lang li span.lang-link-bar {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	margin-bottom: -5px;
+	border-radius: 2px;
+	background: #666;
+	opacity: 0;
+}
+
+.site-lang li.current-lang span.lang-link-bar {
+	opacity: 1;
+}
+
+.site-lang a,
+.site-portal {
+	display: flex;
+	font-family: 'Alata';
+	font-size: 15px;
+	color: #666;
+	text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+	.site-lang a,
+	.site-portal {
+		font-size: 14px;
+	}
+}
