@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', intersection_observer);
-function intersection_observer() {
+document.addEventListener('DOMContentLoaded', intersectionObserver);
+function intersectionObserver() {
 	const imageObserver = new IntersectionObserver(
 		(entries, imgObserver) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
-					const lazyImage = entry.target;
+					let lazyImage = entry.target;
 					let srcset = lazyImage.dataset.srcset;
 					lazyImage.srcset = srcset;
 					lazyImage.src = srcset;
@@ -29,11 +29,13 @@ let newUrl = getUrl.replace('es', '');
 let mainUrl = newUrl;
 
 const body = document.body;
+const overlay = document.getElementById('overlay');
 const loader = document.getElementById('loader');
 const header = document.querySelector('.site-header');
 const nav = document.querySelector('nav.nav');
 const open = document.querySelectorAll('a.nav-toggle-open');
 const close = document.querySelector('a.nav-toggle-close');
+const features = document.querySelectorAll('.feature');
 
 let width;
 
@@ -41,33 +43,46 @@ function checkWindowWidth() {
 	width = window.innerWidth;
 }
 
-window.onload = function () {
-	checkWindowWidth();
-	loader.style.opacity = 0;
+function checkMobile() {
+	if (window.navigator.userAgent.includes('Mobi')) {
+		body.classList.add('mobile');
+	} else {
+		body.classList.add('desktop');
+	}
+}
+
+function loading() {
 	nav.style.display = 'block';
+	loader.classList.add('loaded');
+	overlay.classList.add('loaded');
+	setTimeout(function () {
+		overlay.style.display = 'none';
+	}, 1500);
+}
+
+window.onload = function () {
+	checkMobile();
+	checkWindowWidth();
 	showHomeHeader();
-	//siteLogo();
 	siteTitle();
 	headerAppt();
 	navAppt();
-	//apptIcon();
 	menuItemIcon();
 	navSubItems();
 	navCloseText();
-	setTimeout(function () {
-		loader.style.display = 'none';
-	}, 500);
+	featureImages();
+	loading();
 };
 
 window.onresize = function () {
+	checkMobile();
 	checkWindowWidth();
-	//siteLogo();
 	siteTitle();
 	headerAppt();
 	navAppt();
-	//apptIcon();
 	navSubItems();
 	navCloseText();
+	featureImages();
 };
 
 window.onscroll = function () {
@@ -89,6 +104,7 @@ function showHomeHeader() {
 	}
 }
 
+/* Deprecated */
 function siteLogo() {
 	let site_logos = document.querySelectorAll('.site-logo');
 	let logo_main =
@@ -121,7 +137,7 @@ function siteLogo() {
 function siteTitle() {
 	let titles = document.querySelectorAll('h1.site-title');
 	titles.forEach(title => {
-		if (width < 992) {
+		if (width < 768) {
 			title.textContent = 'CWC';
 		} else {
 			title.textContent = "Collaborative Women's Care";
@@ -149,6 +165,7 @@ function navAppt() {
 	}
 }
 
+/* Deprecated */
 function apptIcon() {
 	let icons = document.querySelectorAll('a.appt-link > span.appt-link-icon');
 	let icon_big =
@@ -235,6 +252,16 @@ close.addEventListener('click', function (e) {
 	body.classList.remove('no-scroll');
 });
 
+document.addEventListener('keydown', function (e) {
+	if (e.keyCode === 9) {
+		e.preventDefault();
+		open[0].click();
+	}
+	if (e.keyCode === 27) {
+		close.click();
+	}
+});
+
 document.querySelectorAll('a[href="#insurances"]').forEach(button => {
 	button.addEventListener('click', function (e) {
 		e.preventDefault();
@@ -250,3 +277,24 @@ document.querySelectorAll('a[href="#insurances"]').forEach(button => {
 		}
 	});
 });
+
+function featureImages() {
+	if (body.classList.contains('home')) {
+		features.forEach(feature => {
+			let image = feature.getElementsByTagName('img')[0];
+			let main = image.dataset.main;
+			let mobile = image.dataset.mobile;
+			if (width < 768) {
+				if (mobile != '') {
+					image.dataset.srcset = mobile;
+					image.srcset = mobile;
+					image.src = mobile;
+				}
+			} else {
+				image.dataset.srcset = main;
+				image.srcset = main;
+				image.src = main;
+			}
+		});
+	}
+}

@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 <?php include 'includes/translations.php'; ?>
+<?php $appt_link_url = carbon_get_theme_option('crb_appt_link_url'); ?>
 
 <header class="site-header home-intro-header">
     <div class="site-header-container">
@@ -79,7 +80,7 @@
         <div class="post-thumb feature-thumb">
             <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>" data-main="<?php echo $srcset; ?>"
                 data-mobile="<?php echo !empty($mobile_img_src) ? $mobile_img_src[0] : ''; ?>"
-                sizes="(min-width: 992px) 1024px" alt="Stock Image">
+                sizes="(min-width: 992px) 1024px, 100vw" title="<?php echo $title; ?>" alt="<?php echo $title; ?>">
             <div class="lazy-overlay on"></div>
         </div>
         <div class="feature-overlay">
@@ -125,21 +126,20 @@ $home_team_link_url = carbon_get_theme_option('crb_home_team_link_url');
                 <div class="row d-flex align-items-center">
                     <?php
                         if ($home_team_image && $home_team_content) {
-                            $class = 'col-sm-6';
+                            $class = 'col-lg-6';
                         } else {
                             $class = 'col-12';
                         }
                         ?>
-                    <?php if (!empty($home_team_image)) { ?>
+                    <?php if (!empty($home_team_image) || !empty($home_team_content)) { ?>
                     <div class=<?php echo $class; ?>>
                         <div class="post-thumb home-team-thumb">
                             <img class="lazy" src="" srcset="" data-srcset="<?php echo $home_team_image_srcset; ?>"
-                                alt="Stock Image">
+                                title="<?php echo $home_team_content['title']; ?>"
+                                alt="<?php echo $home_team_content['title']; ?>">
                             <div class="lazy-overlay on"></div>
                         </div>
                     </div>
-                    <?php } ?>
-                    <?php if (!empty($home_team_content)) { ?>
                     <div class=<?php echo $class; ?>>
                         <div class="home-team-content <?php echo $class == 'col-12' ? 'text-center' : ''; ?>">
                             <?php if (array_key_exists('title', $home_team_content)) { ?>
@@ -180,7 +180,8 @@ $home_team_link_url = carbon_get_theme_option('crb_home_team_link_url');
             ?>
             <div class="grid-item insurance-item">
                 <div class="post-thumb insurance-thumb">
-                    <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>" alt="<?php echo $title; ?>">
+                    <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>"
+                        title="<?php echo $title; ?>" alt="<?php echo $title; ?>">
                     <div class="lazy-overlay on"></div>
                 </div>
             </div>
@@ -205,7 +206,8 @@ $home_team_link_url = carbon_get_theme_option('crb_home_team_link_url');
             ?>
             <div class="grid-item affiliation-item">
                 <div class="post-thumb affiliation-thumb">
-                    <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>" alt="<?php echo $title; ?>">
+                    <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>"
+                        title="<?php echo $title; ?>" alt="<?php echo $title; ?>">
                     <div class="lazy-overlay on"></div>
                 </div>
                 <!--<div class="star"></div>-->
@@ -215,39 +217,5 @@ $home_team_link_url = carbon_get_theme_option('crb_home_team_link_url');
     </div>
 </section>
 <?php } ?>
-
-<script>
-    let features = document.querySelectorAll('.feature');
-    window.addEventListener('load', function () {
-        if (window.innerWidth < 768) {
-            features.forEach(feature => {
-                let image = feature.getElementsByTagName('img')[0];
-                let mobile = image.dataset.mobile;
-                if (mobile != '') {
-                    image.dataset.srcset = mobile;
-                    image.srcset = mobile;
-                }
-            });
-        }
-    });
-    window.addEventListener('resize', function () {
-        features.forEach(feature => {
-            let image = feature.getElementsByTagName('img')[0];
-            let main = image.dataset.main;
-            let mobile = image.dataset.mobile;
-            if (window.innerWidth < 768) {
-                if (mobile != '') {
-                    image.dataset.srcset = mobile;
-                    image.srcset = mobile;
-                    image.src = mobile;
-                }
-            } else {
-                image.dataset.srcset = main;
-                image.srcset = main;
-                image.src = main;
-            }
-        });
-    });
-</script>
 
 <?php get_footer(); ?>

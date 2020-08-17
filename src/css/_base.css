@@ -12,19 +12,20 @@ body {
 	color: #666;
 }
 
-body.no-scroll {
-	overflow: hidden;
+body.desktop::-webkit-scrollbar {
+	width: 15px;
+}
+body.desktop::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+body.desktop::-webkit-scrollbar-thumb {
+	background-color: #ccc;
 }
 
-/*body::-webkit-scrollbar {
-	width: 5px;
+body.desktop.no-scroll {
+	overflow: hidden;
+	padding-right: 15px;
 }
-body::-webkit-scrollbar-track {
-	background-color: #999;
-}
-body::-webkit-scrollbar-thumb {
-	background-color: #666;
-}*/
 
 h1,
 h2,
@@ -76,8 +77,12 @@ p {
 
 a {
 	display: inline-block;
-	color: #0e1e32;
 	text-decoration: none;
+}
+
+p a,
+ul a {
+	text-decoration: underline;
 }
 
 img {
@@ -128,6 +133,10 @@ hr {
 
 .wp-block-image {
 	margin: 30px 0;
+}
+
+.wp-block-image img {
+	height: auto;
 }
 
 /* general */
@@ -299,7 +308,7 @@ h1.single-post-title {
 
 a.appt-link {
 	display: flex;
-	align-items: baseline;
+	align-items: center;
 	justify-content: center;
 	line-height: 1;
 	font-family: 'Alata';
@@ -317,6 +326,7 @@ a.appt-link > span.appt-link-icon {
 	display: inline-flex;
 	width: 17px;
 	height: 11px;
+	margin-bottom: -5.5px;
 }
 
 a.appt-link > span.appt-link-icon > svg.icon-link-schedule-big {

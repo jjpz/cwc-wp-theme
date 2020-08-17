@@ -1,4 +1,30 @@
 <?php
+// Admin login logo
+add_action('login_enqueue_scripts', function () {
+    ?><style type="text/css">
+    #login h1 a,
+    .login h1 a {
+        background-image: url(<?php echo get_stylesheet_directory_uri();
+        ?>/images/logos/cwc-site-header-logo.svg);
+        background-size: contain;
+        background-position: center top;
+        background-repeat: no-repeat;
+        width: 100px;
+        margin: 0 auto 25px;
+    }
+</style><?php
+});
+
+// Admin login logo URL
+add_filter('login_headerurl', function () {
+    return home_url();
+});
+
+// Admin login logo text
+add_filter('login_headertext', function () {
+    return get_bloginfo('name');
+});
+
 // Admin CSS + JS
 add_action('admin_enqueue_scripts', 'cwc_admin_scripts');
 function cwc_admin_scripts() {

@@ -9,7 +9,8 @@
     ?>
     <div class="grid-item service-item">
         <a href="<?php echo $url; ?>" class="post-thumb service-item-thumb">
-            <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>" alt="Stock Image">
+            <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>" title="<?php echo $title; ?>"
+                alt="<?php echo $title; ?>">
             <div class="lazy-overlay on"></div>
             <div class="service-item-overlay">
                 <span class="link-main service-item-title"><?php echo $title; ?></span>

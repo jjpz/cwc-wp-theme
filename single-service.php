@@ -25,13 +25,14 @@ $srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id($id));
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 single-post-col single-post-image">
+                <div class="col-lg-6 single-post-col single-post-image">
                     <div class="post-thumb single-service-thumb">
-                        <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>" alt="Stock Image">
+                        <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>"
+                            title="<?php the_title(); ?>" alt="<?php the_title(); ?>">
                         <div class="lazy-overlay on"></div>
                     </div>
                 </div>
-                <div class="col-sm-6 single-post-col single-post-content">
+                <div class="col-lg-6 single-post-col single-post-content">
                     <?php the_content(); ?>
                 </div>
             </div>

@@ -12,6 +12,11 @@
 	margin: 0;
 }
 
+.site-footer a {
+	color: #fff;
+	text-decoration: none;
+}
+
 .footer-row {
 	display: flex;
 	flex-wrap: wrap;

@@ -18,7 +18,7 @@
             <?php
         foreach ($features as $feature) {
             $id = $feature->ID;
-            $url = get_permalink($id);
+            $url = carbon_get_post_meta($id, 'crb_feature_link_url');
             $title = $feature->post_title;
             echo '<a href="' . $url . '" class="link-main">' . $title . '</a>';
         }

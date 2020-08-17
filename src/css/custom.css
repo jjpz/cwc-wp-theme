@@ -1,9 +1,9 @@
 /*!*/
 /*! Custom CSS */
 
-@import '_loader.css';
 @import '_fonts.css';
 @import '_base.css';
+@import '_loader.css';
 @import '_nav.css';
 
 /* grid */
@@ -82,8 +82,12 @@
 .home-intro .arrow-down {
 	display: flex;
 	position: absolute;
-	bottom: 30px;
-	right: 45px;
+	bottom: 35px;
+	width: 100%;
+	max-width: 1920px;
+	margin: auto;
+	padding-right: 30px;
+	justify-content: flex-end;
 	-webkit-animation: arrowBounce 0.5s infinite alternate ease-in-out;
 }
 
@@ -114,7 +118,7 @@
 }
 
 .home-intro-tagline-1 {
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 }
 
 .home-intro-tagline-2 {
@@ -125,7 +129,7 @@
 	color: #80bee8;
 }
 
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-height: 758px) {
 	.home-intro {
 		height: calc(100vh - 80px);
 	}
@@ -150,6 +154,10 @@
 	.home-intro-tagline-2 {
 		margin-bottom: 15px;
 	}
+
+	.home-intro .arrow-down {
+		padding-right: 15px;
+	}
 }
 
 @media (max-width: 575px) {
@@ -168,7 +176,7 @@
 .features {
 	position: relative;
 	width: 100%;
-	max-width: 2560px;
+	max-width: 1920px;
 	margin: 0 auto 150px;
 }
 
@@ -187,7 +195,7 @@
 }
 
 .feature-thumb {
-	padding-top: 30%;
+	padding-top: 33.333%;
 }
 
 .feature-overlay {
@@ -225,19 +233,13 @@
 	color: #fff;
 }
 
-@media (min-width: 2560px) {
+@media (min-width: 1920px) {
 	.features {
 		padding: 0 30px;
 	}
 }
 
 @media (max-width: 991px) {
-	.feature-thumb {
-		padding-top: 40%;
-	}
-}
-
-@media (max-width: 767px) {
 	.feature-thumb {
 		padding-top: 62.5%;
 	}
@@ -322,6 +324,10 @@ h1.home-services-title {
 
 /* single service */
 
+article.service {
+	margin-bottom: 100px;
+}
+
 .single-service-thumb {
 	position: relative;
 	width: 100%;
@@ -390,7 +396,8 @@ p.home-team-description {
 }
 
 .page-team-member {
-	margin: 85px auto;
+	margin-top: 85px;
+	margin-bottom: 85px;
 }
 
 .member-col {
@@ -408,6 +415,10 @@ p.member-description {
 }
 
 /* single team member */
+
+article.member {
+	margin-bottom: 100px;
+}
 
 article.member h1.single-post-title {
 	margin-bottom: 25px;
@@ -450,8 +461,8 @@ p.other-members-title {
 	margin: auto;
 }
 
-.insurance-item {
-	margin-bottom: 30px;
+.insurance-thumb {
+	padding-top: 62.5%;
 }
 
 /* home - affiliations */
@@ -468,8 +479,8 @@ p.other-members-title {
 	margin: auto;
 }
 
-.affiliation-item {
-	margin-bottom: 30px;
+.affiliation-thumb {
+	padding-top: 62.5%;
 }
 
 @import '_footer.css';

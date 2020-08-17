@@ -29,13 +29,14 @@ $position = carbon_get_post_meta($id, 'crb_member_position');
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 single-post-col single-post-image">
+                <div class="col-lg-6 single-post-col single-post-image">
                     <div class="post-thumb single-member-thumb">
-                        <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>" alt="Stock Image">
+                        <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>"
+                            title="<?php the_title(); ?>" alt="<?php the_title(); ?>">
                         <div class="lazy-overlay on"></div>
                     </div>
                 </div>
-                <div class="col-sm-6 single-post-col single-post-content">
+                <div class="col-lg-6 single-post-col single-post-content">
                     <?php the_content(); ?>
                 </div>
             </div>
@@ -66,6 +67,7 @@ $team = get_posts(array(
             <?php foreach ($team as $member) { ?>
             <?php
             $id = $member->ID;
+            $title = $member->post_title;
             $url = get_permalink($id);
             $src = get_the_post_thumbnail_url($id, 'medium');
             $srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id($id));
@@ -73,10 +75,11 @@ $team = get_posts(array(
             <div class="grid-item member-item">
                 <a href="<?php echo $url; ?>">
                     <div class="post-thumb member-thumb">
-                        <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>" alt="Stock Image">
+                        <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>"
+                            title="<?php echo $title; ?>" alt="<?php echo $title; ?>">
                         <div class="lazy-overlay on"></div>
                     </div>
-                    <p class="link-main member-name"><?php echo $member->post_title; ?></p>
+                    <p class="link-main member-name"><?php echo $title; ?></p>
                 </a>
             </div>
             <?php } ?>
