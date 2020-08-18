@@ -66,15 +66,15 @@
 <section class="features">
     <?php foreach ($features as $i => $feature) { ?>
     <?php
-            $id = $feature->ID;
-            $url = get_permalink($id);
-            $title = $feature->post_title;
-            $description = wp_trim_words($feature->post_content, 25);
-            $main_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id($id), 'full');
-            $mobile_img = carbon_get_post_meta($id, 'crb_feature_img_mobile');
-            $mobile_srcset = wp_get_attachment_image_srcset($mobile_img, 'full');
-            $link_url = carbon_get_post_meta($id, 'crb_feature_link_url');
-            ?>
+    $id = $feature->ID;
+    $url = get_permalink($id);
+    $title = $feature->post_title;
+    $description = wp_trim_words($feature->post_content, 25);
+    $main_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id($id), 'full');
+    $mobile_img = carbon_get_post_meta($id, 'crb_feature_img_mobile');
+    $mobile_srcset = wp_get_attachment_image_srcset($mobile_img, 'full');
+    $link_url = carbon_get_post_meta($id, 'crb_feature_link_url');
+    ?>
     <div id="feature-<?php echo $id; ?>" class="feature feature-<?php echo ($i + 1) % 2 == 0 ? 'even' : 'odd'; ?>">
         <div class="post-thumb feature-thumb">
             <img class="lazy" src="" srcset="" data-srcset=""
@@ -173,11 +173,11 @@ $home_team_link_url = carbon_get_theme_option('crb_home_team_link_url');
         <div class="grid insurance-grid">
             <?php foreach ($insurances as $i => $insurance) { ?>
             <?php
-                    $id = $insurance->ID;
-                    $title = $insurance->post_title;
-                    $src = get_the_post_thumbnail_url($id);
-                    $srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id($id));
-                    ?>
+            $id = $insurance->ID;
+            $title = $insurance->post_title;
+            $src = get_the_post_thumbnail_url($id);
+            $srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id($id));
+            ?>
             <div class="grid-item insurance-item">
                 <div class="post-thumb insurance-thumb">
                     <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>"
@@ -199,11 +199,11 @@ $home_team_link_url = carbon_get_theme_option('crb_home_team_link_url');
         <div class="grid affiliation-grid">
             <?php foreach ($affiliations as $i => $affiliation) { ?>
             <?php
-                    $id = $affiliation->ID;
-                    $title = $affiliation->post_title;
-                    $src = get_the_post_thumbnail_url($id);
-                    $srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id($id));
-                    ?>
+            $id = $affiliation->ID;
+            $title = $affiliation->post_title;
+            $src = get_the_post_thumbnail_url($id);
+            $srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id($id));
+            ?>
             <div class="grid-item affiliation-item">
                 <div class="post-thumb affiliation-thumb">
                     <img class="lazy" src="" srcset="" data-srcset="<?php echo $srcset; ?>"

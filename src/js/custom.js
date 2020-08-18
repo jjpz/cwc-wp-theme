@@ -1,3 +1,16 @@
+let getUrl = globalObject.homeUrl;
+let newUrl = getUrl.replace('es', '');
+let mainUrl = newUrl;
+const body = document.body;
+const overlay = document.getElementById('overlay');
+const loader = document.getElementById('loader');
+const header = document.querySelector('.site-header');
+const nav = document.querySelector('nav.nav');
+const open = document.querySelectorAll('a.nav-toggle-open');
+const close = document.querySelector('a.nav-toggle-close');
+const features = document.querySelectorAll('.feature');
+let width;
+
 document.addEventListener('DOMContentLoaded', intersectionObserver);
 function intersectionObserver() {
 	const imageObserver = new IntersectionObserver(
@@ -9,7 +22,7 @@ function intersectionObserver() {
 					lazyImage.srcset = srcset;
 					lazyImage.src = srcset;
 					lazyImage.classList.remove('lazy');
-					if (srcset != '') {
+					if (lazyImage.srcset != '') {
 						lazyImage.nextElementSibling.classList.remove('on');
 					}
 					imgObserver.unobserve(lazyImage);
@@ -18,26 +31,84 @@ function intersectionObserver() {
 		},
 		{ rootMargin: '250px 0px' }
 	);
+	featureImages();
 	const images = document.querySelectorAll('img.lazy');
 	images.forEach(image => {
 		imageObserver.observe(image);
 	});
 }
 
-let getUrl = globalObject.homeUrl;
-let newUrl = getUrl.replace('es', '');
-let mainUrl = newUrl;
+function featureImages() {
+	checkWindowWidth();
+	if (body.classList.contains('home')) {
+		features.forEach(feature => {
+			let image = feature.getElementsByTagName('img')[0];
+			let main = image.dataset.main;
+			let mainSrcset = main.split(', ');
+			let mobile = image.dataset.mobile;
+			let mobileSrcset = mobile.split(', ');
+			let targetSrcset;
+			let arr = [];
 
-const body = document.body;
-const overlay = document.getElementById('overlay');
-const loader = document.getElementById('loader');
-const header = document.querySelector('.site-header');
-const nav = document.querySelector('nav.nav');
-const open = document.querySelectorAll('a.nav-toggle-open');
-const close = document.querySelector('a.nav-toggle-close');
-const features = document.querySelectorAll('.feature');
+			if (width < 992) {
+				targetSrcset = mobileSrcset;
+			} else {
+				targetSrcset = mainSrcset;
+			}
+			//console.log(targetSrcset);
 
-let width;
+			targetSrcset.forEach(src => {
+				let obj = {};
+				let srcset = src.split(' ');
+				//console.log(srcset);
+				srcset[1] = srcset[1].slice(0, -1);
+				obj.width = srcset[1];
+				obj.src = srcset[0];
+				//console.log(obj);
+				arr.push(obj);
+			});
+
+			arr.sort(function (a, b) {
+				return a.width - b.width;
+			});
+			//console.log(arr);
+
+			let w;
+			let s;
+			for (let i = 0, l = arr.length; i < l; i++) {
+				if (arr[i].width > width) {
+					w = arr[i].width;
+					s = arr[i].src;
+					break;
+				} else {
+					w = arr[l - 1].width;
+					s = arr[l - 1].src;
+				}
+			}
+			//console.log(w + ' : ' + s);
+
+			if (image.classList.contains('lazy')) {
+				image.dataset.srcset = s;
+			} else {
+				image.dataset.srcset = s;
+				image.srcset = s;
+				image.src = s;
+			}
+
+			/*if (width < 768) {
+				if (mobile != '') {
+					image.dataset.srcset = mobile;
+					image.srcset = mobile;
+					image.src = mobile;
+				}
+			} else {
+				image.dataset.srcset = main;
+				image.srcset = main;
+				image.src = main;
+			}*/
+		});
+	}
+}
 
 function checkWindowWidth() {
 	width = window.innerWidth;
@@ -70,7 +141,6 @@ window.onload = function () {
 	menuItemIcon();
 	navSubItems();
 	navCloseText();
-	featureImages();
 	loading();
 };
 
@@ -277,24 +347,3 @@ document.querySelectorAll('a[href="#insurances"]').forEach(button => {
 		}
 	});
 });
-
-function featureImages() {
-	if (body.classList.contains('home')) {
-		features.forEach(feature => {
-			let image = feature.getElementsByTagName('img')[0];
-			let main = image.dataset.main;
-			let mobile = image.dataset.mobile;
-			if (width < 768) {
-				if (mobile != '') {
-					image.dataset.srcset = mobile;
-					image.srcset = mobile;
-					image.src = mobile;
-				}
-			} else {
-				image.dataset.srcset = main;
-				image.srcset = main;
-				image.src = main;
-			}
-		});
-	}
-}
