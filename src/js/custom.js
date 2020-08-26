@@ -117,7 +117,7 @@ function featureImages() {
 			srcArray.sort(function (a, b) {
 				return a.width - b.width;
 			});
-			console.log(srcArray);
+			//console.log(srcArray);
 
 			//let w;
 			let src;
